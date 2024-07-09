@@ -1,0 +1,35 @@
+﻿@page "/livros"
+
+@inherits IndexPage
+
+<MudText Typo="Typo.h3">Livros</MudText>
+
+<MudButton Variant="Variant.Filled"
+           StartIcon="@Icons.Material.Filled.Add"
+           Color="Color.Info"
+           Size="Size.Small"
+           Href="/livros/create"
+           Class="mt-md4 mb-4">Novo livro</MudButton>
+
+<MudDataGrid Items="@Livros" PageSize="10" SortMode="@SortMode.Single" Groupable="false" >
+    <Columns>
+        <PropertyColumn Property="z=>z.Titulo" Title="Nome" Sortable="true" Filterable="true" />
+        <PropertyColumn Property="z=>z.Autor" Title="Autor" Sortable="true" Filterable="true" />
+        <PropertyColumn Property="z=>z.Ano" Title="Ano" Sortable="true" Filterable="true" />
+        <PropertyColumn Property="z=>z.ISBN" Title="ISBN" Sortable="true" Filterable="true" />
+        <TemplateColumn>
+            <CellTemplate>
+                <MudStack Row>
+                    <MudFab Size="Size.Small"
+                            @onclick="@(()=>GoToUpdate(context.Item.Id))"
+                            StartIcon="@Icons.Material.Filled.Edit"
+                            Color="Color.Success"></MudFab>
+                    <MudFab Size="Size.Small"
+                            @onclick="@(()=>DeleteLivro(context.Item))"
+                            StartIcon="@Icons.Material.Filled.Delete"
+                            Color="Color.Error"></MudFab>
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid> 

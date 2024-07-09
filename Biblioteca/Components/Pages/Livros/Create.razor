@@ -1,0 +1,51 @@
+﻿@page "/livros/create"
+@inherits CreateLivroPage
+
+
+<MudText Typo="Typo.h3">Criar Livro</MudText>
+
+<MudPaper Class="pa-8 mt-4">
+      <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+        <DataAnnotationsValidator/>
+        <MudTextField Label="Título"
+            Variant="Variant.Outlined"
+            HelperText="Campo obrigatorio"
+            @bind-Value="InputModel.Titulo"
+            For="@(()=> InputModel.Titulo)" />
+
+        <MudTextField Label="Autor"
+            Variant="Variant.Outlined"
+            HelperText="Campo obrigatorio"
+            @bind-Value="InputModel.Autor"
+            For="@(()=> InputModel.Autor)" />
+
+        <MudNumericField 
+            Label="Ano" 
+            Variant="Variant.Text"
+            @bind-Value="InputModel.Ano"
+            Min="0"
+            Max="@MaxYear" />
+
+        <MudTextField Label="ISBN"
+            Variant="Variant.Outlined"
+            HelperText="Campo obrigatorio"
+            @bind-Value="InputModel.ISBN"
+            For="@(()=> InputModel.ISBN)" />
+
+        <MudDivider Class="m-4" />
+
+        <MudButton Variant="Variant.Filled"
+                    StartIcon="@Icons.Material.Filled.Save"
+                    Color="Color.Success"
+                    ButtonType="ButtonType.Submit"
+                    Class="mr-2">Gravar</MudButton>
+        <MudButton Variant="Variant.Filled"
+                    StartIcon="@Icons.Material.Filled.Cancel"
+                   @onclick="@(()=>Cancelar())"
+                    Color="Color.Error"
+                    Class="mr-2">Cancelar</MudButton>
+
+        
+    </EditForm>
+
+</MudPaper>
