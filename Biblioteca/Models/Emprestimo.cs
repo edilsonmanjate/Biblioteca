@@ -10,7 +10,7 @@ namespace Biblioteca.Models
         public Livro Livro { get; set; } = null!;
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; } = null!;
-        public string DataEmprestimo { get; set; } = null!;
-        public string DataDevolucao { get; set; } = null!;
+        public DateTime DataEmprestimo { get; set; }
+        public DateTime DataDevolucao { get; set; } 
     }
 }

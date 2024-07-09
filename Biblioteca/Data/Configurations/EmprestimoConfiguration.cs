@@ -11,10 +11,10 @@ namespace Biblioteca.Data.Configurations
         {
             builder.ToTable("Emprestimos");
             builder.HasKey(p => p.Id);
+
             builder.Property(p => p.DataEmprestimo)
                     .IsRequired()
                     .HasColumnType("date");
-
 
             builder.Property(p => p.DataDevolucao)
                     .IsRequired()
