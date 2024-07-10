@@ -1,5 +1,63 @@
-﻿<h3>Create</h3>
+﻿@page "/emprestimos/create"
+@using Microsoft.AspNetCore.Authorization
+@inherits CreateEmprestimoPage
 
-@code {
+@* @attribute [Authorize(Roles = "Atendente")]
+ *@
+<PageTitle>Emprestimos</PageTitle>
 
-}
+<MudText Typo="Typo.h3">Registo de emprestimos</MudText>
+
+<MudPaper Class="pa-8 mt-4">
+
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+
+        <DataAnnotationsValidator />
+
+        <MudSelect Label="Livros"
+                   @bind-Value="InputModel.LivroId"
+                   Variant="Variant.Outlined"
+                   AnchorOrigin="Origin.BottomCenter"
+                   For="@(()=> InputModel.LivroId)">
+                    @foreach (var livros in Livros)
+                    {
+                        <MudSelectItem Value="@livros.Id">@livros.Titulo</MudSelectItem>
+                    }
+        </MudSelect>
+
+        <MudTextField Label="Usuarios"
+                      Variant="Variant.Outlined"
+                      @bind-Value="InputModel.UsuarioId"
+                      For="@(()=> InputModel.UsuarioId)" />
+
+
+        <MudDatePicker Variant="Variant.Outlined"
+                       @bind-Date="date"
+                       Label="Date do emprestimo"
+                       MinDate="MinDate"
+                       DateFormat="dd/MM/yyyy" />
+
+        <MudDatePicker Variant="Variant.Outlined"
+                       @bind-Date="date"
+                       Label="Date da devolução"
+                       MinDate="MinDate"
+                       DateFormat="dd/MM/yyyy" />
+
+       
+
+        <MudDivider Class="m-4" />
+
+        <MudButton Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.Save"
+                   Color="Color.Success"
+                   ButtonType="ButtonType.Submit"
+                   Class="mr-2">Gravar</MudButton>
+        <MudButton Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.Cancel"
+                   @onclick="@(()=>Cancelar())"
+                   Color="Color.Error"
+                   Class="mr-2">Cancelar</MudButton>
+
+    </EditForm>
+
+</MudPaper>

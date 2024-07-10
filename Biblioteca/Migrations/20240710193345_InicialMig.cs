@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Biblioteca.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialtMigration : Migration
+    public partial class InicialMig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -184,19 +184,12 @@ namespace Biblioteca.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LivroId = table.Column<int>(type: "int", nullable: false),
                     UsuarioId = table.Column<int>(type: "int", nullable: false),
-                    UsuarioId1 = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     DataEmprestimo = table.Column<DateTime>(type: "date", nullable: false),
                     DataDevolucao = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Emprestimos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Emprestimos_AspNetUsers_UsuarioId1",
-                        column: x => x.UsuarioId1,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Emprestimos_Livros_LivroId",
                         column: x => x.LivroId,
@@ -219,8 +212,8 @@ namespace Biblioteca.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Nome", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "ac45e3fa-919b-47de-b8e7-71285749077d", "Usuario", "admin@mail.com", true, false, null, "Administrador", "ADMIN@MAIL.COM", "ADMIN@MAIL.COM", "AQAAAAIAAYagAAAAEN1rpRtPDpKrIyQ2Q/1L78THI8Y9vAsfcTIsguhJnvrffEY0DVLgEwGYZZgw1fMB+A==", null, false, "f8ede0eb-0280-457c-bb83-044eaf3acb3f", false, "admin@mail.com" },
-                    { "2", 0, "f2931425-9cc4-47b5-8f59-78fbec36d95b", "Usuario", "edilson@mail.com", true, false, null, "Edilson", "EDILSON@MAIL.COM", "EDILSON@MAIL.COM", "AQAAAAIAAYagAAAAENTMbdRdfbsCxu86ce4uvaRLNSj2KRorWrRDpUQsGkbcXQF8LhL789pfDxErt8eykQ==", null, false, "bc97a0ee-a26b-4ed0-8998-91d7b7ce1a1a", false, "edilson@mail.com" }
+                    { "1", 0, "026a8e56-031b-47af-ac19-c00dcff6c639", "Usuario", "admin@mail.com", true, false, null, "Administrador", "ADMIN@MAIL.COM", "ADMIN@MAIL.COM", "AQAAAAIAAYagAAAAEKDSNM1t4asIPg2LAghOKwaz+R8iPOxu2dTyF8DJlyVSxe755LhmjfuWEEg9AI+z0A==", null, false, "f0b3757d-3c93-4da4-9621-072dead1d225", false, "admin@mail.com" },
+                    { "2", 0, "7f322490-b099-42f6-a4c8-8e9723c2fe61", "Usuario", "edilson@mail.com", true, false, null, "Edilson", "EDILSON@MAIL.COM", "EDILSON@MAIL.COM", "AQAAAAIAAYagAAAAEPjilHAvhwR6fi03XETBhGNpVp1JLwn2m763C/HXuEXWv3Vm5SxpVuckoteRQKlLsg==", null, false, "ade6607a-e4dc-4fdb-b2e0-f6029a7ff265", false, "edilson@mail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -290,11 +283,6 @@ namespace Biblioteca.Migrations
                 name: "IX_Emprestimos_LivroId",
                 table: "Emprestimos",
                 column: "LivroId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Emprestimos_UsuarioId1",
-                table: "Emprestimos",
-                column: "UsuarioId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Livros_ISBN",

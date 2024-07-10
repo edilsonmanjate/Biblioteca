@@ -18,6 +18,8 @@ namespace Biblioteca.Repositories.Emprestimos
         {
             return await _context
                         .Emprestimos
+                        .Include(e => e.Livro)
+                        .Include(p => p.Usuario)
                         .AsNoTracking()
                         .ToListAsync();
         }
@@ -53,7 +55,7 @@ namespace Biblioteca.Repositories.Emprestimos
         {
             return await _context.Emprestimos
                 .Include(e => e.Livro)
-                .Include(e => e.Usuario)
+                //.Include(e => e.Usuario)
                 .ToListAsync();
         }   
     }

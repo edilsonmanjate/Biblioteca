@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteca.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240709001143_InitialtMigration")]
-    partial class InitialtMigration
+    [Migration("20240710193345_InicialMig")]
+    partial class InicialMig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,15 +119,9 @@ namespace Biblioteca.Migrations
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UsuarioId1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("LivroId");
-
-                    b.HasIndex("UsuarioId1");
 
                     b.ToTable("Emprestimos", (string)null);
                 });
@@ -404,15 +398,15 @@ namespace Biblioteca.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ac45e3fa-919b-47de-b8e7-71285749077d",
+                            ConcurrencyStamp = "026a8e56-031b-47af-ac19-c00dcff6c639",
                             Email = "admin@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN1rpRtPDpKrIyQ2Q/1L78THI8Y9vAsfcTIsguhJnvrffEY0DVLgEwGYZZgw1fMB+A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKDSNM1t4asIPg2LAghOKwaz+R8iPOxu2dTyF8DJlyVSxe755LhmjfuWEEg9AI+z0A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f8ede0eb-0280-457c-bb83-044eaf3acb3f",
+                            SecurityStamp = "f0b3757d-3c93-4da4-9621-072dead1d225",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com",
                             Nome = "Administrador"
@@ -421,15 +415,15 @@ namespace Biblioteca.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f2931425-9cc4-47b5-8f59-78fbec36d95b",
+                            ConcurrencyStamp = "7f322490-b099-42f6-a4c8-8e9723c2fe61",
                             Email = "edilson@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EDILSON@MAIL.COM",
                             NormalizedUserName = "EDILSON@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENTMbdRdfbsCxu86ce4uvaRLNSj2KRorWrRDpUQsGkbcXQF8LhL789pfDxErt8eykQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPjilHAvhwR6fi03XETBhGNpVp1JLwn2m763C/HXuEXWv3Vm5SxpVuckoteRQKlLsg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bc97a0ee-a26b-4ed0-8998-91d7b7ce1a1a",
+                            SecurityStamp = "ade6607a-e4dc-4fdb-b2e0-f6029a7ff265",
                             TwoFactorEnabled = false,
                             UserName = "edilson@mail.com",
                             Nome = "Edilson"
@@ -444,15 +438,7 @@ namespace Biblioteca.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Biblioteca.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Livro");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

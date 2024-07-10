@@ -8,7 +8,7 @@ namespace Biblioteca.Models
         public int Id { get; set; }
         public int LivroId { get; set; }
         public Livro Livro { get; set; } = null!;
-        public int UsuarioId { get; set; }
+        public string UsuarioId { get; set; } = null!;
         public Usuario Usuario { get; set; } = null!;
         public DateTime DataEmprestimo { get; set; }
         public DateTime DataDevolucao { get; set; } 

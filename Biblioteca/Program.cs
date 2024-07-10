@@ -1,6 +1,7 @@
 using Biblioteca.Components;
 using Biblioteca.Components.Account;
 using Biblioteca.Data;
+using Biblioteca.Models;
 using Biblioteca.Repositories.Emprestimos;
 using Biblioteca.Repositories.Livros;
 

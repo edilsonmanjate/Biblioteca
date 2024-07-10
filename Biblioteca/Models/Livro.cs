@@ -10,7 +10,6 @@ namespace Biblioteca.Models
         public string Autor { get; set; } = null!;
         public int Ano { get; set; }
         public string ISBN { get; set; } = null!;
-
         public ICollection<Emprestimo> Emprestimos { get; set; } = new List<Emprestimo>();
 
     }

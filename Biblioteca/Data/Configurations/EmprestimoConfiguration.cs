@@ -3,6 +3,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+using System.Reflection.Emit;
+
 namespace Biblioteca.Data.Configurations
 {
     public class EmprestimoConfiguration: IEntityTypeConfiguration<Emprestimo>
@@ -20,10 +22,15 @@ namespace Biblioteca.Data.Configurations
                     .IsRequired()
                     .HasColumnType("date");
 
-            builder.Property(p => p.UsuarioId)
-                    .IsRequired();
+            //builder.Property(p => p.UsuarioId)
+            //        .IsRequired();
 
             builder.Property(p => p.LivroId)
+            .IsRequired();
+
+            builder.HasOne(e => e.Usuario)
+                    .WithMany()
+                    .HasForeignKey(e => e.UsuarioId)
                     .IsRequired();
 
         }

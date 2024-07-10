@@ -1,12 +1,13 @@
 ﻿using Biblioteca.Models;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Biblioteca.Data.Configurations
 {
     public class LivroConfiguration : IEntityTypeConfiguration<Livro>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Livro> builder)
+        public void Configure(EntityTypeBuilder<Livro> builder)
         {
             builder.ToTable("Livros");
             builder.HasKey(p => p.Id);
