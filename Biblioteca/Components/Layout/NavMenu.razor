@@ -1,47 +1,16 @@
-﻿@implements IDisposable
+﻿<MudNavMenu>
+	<MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+	<MudNavLink Href="livros" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.People">Livros</MudNavLink>
+	<MudNavLink Href="emprestimos" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Schedule">Emprestimos</MudNavLink>
+	<MudNavLink Href="auth" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Auth Required</MudNavLink>
 
-@inject NavigationManager NavigationManager
-
-<MudNavMenu>
-    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-    <MudDivider></MudDivider>
-    <MudNavLink Href="livros" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Livros</MudNavLink>
-    <MudNavLink Href="emprestimos" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Emprestimos</MudNavLink>
-    <MudDivider></MudDivider>
-
-    <MudNavLink Href="auth" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Auth Required</MudNavLink>
-
-    <AuthorizeView>
-        <Authorized>
-            <MudNavLink Href="Account/Manage" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">@context.User.Identity?.Name</MudNavLink>
-        </Authorized>
-        <NotAuthorized>
-            <MudNavLink Href="Account/Register" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Register</MudNavLink>
-            <MudNavLink Href="Account/Login" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Login</MudNavLink>
-        </NotAuthorized>
-    </AuthorizeView>
+	<AuthorizeView>
+		<Authorized>
+			<MudNavLink Href="Account/Manage" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">@context.User.Identity?.Name</MudNavLink>
+		</Authorized>
+		<NotAuthorized>
+			<MudNavLink Href="Account/Register" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Register</MudNavLink>
+			<MudNavLink Href="Account/Login" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Login</MudNavLink>
+		</NotAuthorized>
+	</AuthorizeView>
 </MudNavMenu>
-
-
-@code {
-    private string? currentUrl;
-
-    protected override void OnInitialized()
-    {
-        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
-        NavigationManager.LocationChanged += OnLocationChanged;
-    }
-
-    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
-    {
-        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
-        StateHasChanged();
-    }
-
-    public void Dispose()
-    {
-        NavigationManager.LocationChanged -= OnLocationChanged;
-    }
-}
-
-

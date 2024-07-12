@@ -14,6 +14,18 @@ namespace Biblioteca.Repositories.Emprestimos
             _context = context;
         }
 
+
+        public async Task<List<Emprestimo>> GetByUserIdAsync(string userId)
+        {
+            return await _context.Emprestimos
+                                 .Where(e => e.UsuarioId == userId) // Filtra pelo ID do usuário
+                                 .Include(e => e.Livro)
+                                 .Include(p => p.Usuario)
+                                 .AsNoTracking()
+                                 .ToListAsync();
+        }
+
+
         public async Task<List<Emprestimo>> GetAllAsync()
         {
             return await _context

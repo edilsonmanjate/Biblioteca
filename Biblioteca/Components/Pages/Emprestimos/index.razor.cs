@@ -1,10 +1,14 @@
-﻿using Biblioteca.Models;
+﻿using Biblioteca.Data;
+using Biblioteca.Models;
 using Biblioteca.Repositories.Emprestimos;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 using MudBlazor;
+
+using System.Security.Claims;
 
 namespace Biblioteca.Components.Pages.Emprestimos
 {
@@ -12,6 +16,7 @@ namespace Biblioteca.Components.Pages.Emprestimos
     {
         [Inject]
         public IEmprestimoRepository repository { get; set; } = null!;
+
 
         [Inject]
         IDialogService Dialog { get; set; } = null!;
@@ -22,11 +27,22 @@ namespace Biblioteca.Components.Pages.Emprestimos
         [Inject]
         public NavigationManager NavigationManager { get; set; } = null!;
 
+        [Inject]
+        private UserManager<ApplicationUser> _userManager { get; set; } = null!;
+
+        [Inject]
+        private IHttpContextAccessor _httpContextAccessor { get; set; } = null!;
+
         public List<Emprestimo> Emprestimos { get; set; } = new();
 
+
+
+
+
+
         //public bool HideButtons { get; set; }
-        //[CascadingParameter]
-        //private Task<AuthenticationState> AuthenticationStateTask { get; set; }
+        [CascadingParameter]
+        private Task<AuthenticationState> AuthenticationStateTask { get; set; }
 
         public void GoToUpdate(int agendamentoId)
         {
@@ -60,9 +76,13 @@ namespace Biblioteca.Components.Pages.Emprestimos
 
         protected override async Task OnInitializedAsync()
         {
-            //var auth = await AuthenticationStateTask;
+            var auth = await AuthenticationStateTask;
             //HideButtons = !auth.User.IsInRole("Atendente");
-            Emprestimos = await repository.GetAllAsync();
+
+            var userId = _userManager.GetUserId(auth.User); // Obter o ID do usuário logado
+            var emprestimos = await repository.GetByUserIdAsync(userId); // Passar o ID do usuário
+
+            Emprestimos = emprestimos;
         }
 
     }

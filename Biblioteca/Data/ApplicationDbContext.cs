@@ -19,6 +19,7 @@ namespace Biblioteca.Data
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             new DbInitializer(builder).Seed();
             base.OnModelCreating(builder); builder.Entity<Livro>();
+
         }
 
     }

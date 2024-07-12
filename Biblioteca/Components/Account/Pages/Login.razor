@@ -11,15 +11,13 @@
 @inject IdentityRedirectManager RedirectManager
 
 <PageTitle>Log in</PageTitle>
-
-<MudText Typo="Typo.h3" GutterBottom="true">Log in</MudText>
 <MudPaper Class="d-flex justify-center pa-4">
 
     <section>
         <StatusMessage Message="@errorMessage" />
         <EditForm Model="Input" method="post" OnValidSubmit="LoginUser" FormName="login">
             <DataAnnotationsValidator />
-            <h2>Bem vindo ao biblioteca</h2>
+            <h2>Seja bem-vindo a biblioteca</h2>
             <hr />
             <ValidationSummary class="text-danger" role="alert" />
             <div class="form-floating mb-3">

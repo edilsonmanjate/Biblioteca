@@ -1,10 +1,12 @@
 ﻿
+using Biblioteca.Data;
 using Biblioteca.Models;
 using Biblioteca.Repositories.Emprestimos;
 using Biblioteca.Repositories.Livros;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Identity;
 
 using MudBlazor;
 
@@ -23,7 +25,13 @@ namespace Biblioteca.Components.Pages.Emprestimos
         private ISnackbar Snackbar { get; set; } = null!;
 
         [Inject]
-        IDialogService Dialog { get; set; } = null!;
+        private IDialogService Dialog { get; set; } = null!;
+
+        [Inject]
+        private UserManager<ApplicationUser> _userManager { get; set; } = null!;
+
+        [Inject]
+        private IHttpContextAccessor _httpContextAccessor { get; set; } = null!;
 
         protected EmprestimoInputModel InputModel { get; set; } = new EmprestimoInputModel();
 
@@ -31,6 +39,9 @@ namespace Biblioteca.Components.Pages.Emprestimos
 
         [Inject]
         protected NavigationManager NavigationManager { get; set; } = null!;
+
+        public string NomeUser;
+        public string IdUser;
 
         public DateTime? date { get; set; } = DateTime.Now.Date;
         public DateTime? MinDate { get; set; } = DateTime.Now.Date;
@@ -47,7 +58,7 @@ namespace Biblioteca.Components.Pages.Emprestimos
                         DataEmprestimo = date!.Value,
                         DataDevolucao = date!.Value.AddDays(7),
                         LivroId = model.LivroId,
-                        UsuarioId = model.UsuarioId
+                        UsuarioId = IdUser
                     };
 
                     await repository.AddAsync(emprestimo);
@@ -85,6 +96,14 @@ namespace Biblioteca.Components.Pages.Emprestimos
         protected override async Task OnInitializedAsync()
         {
             Livros = await livroRepository.GetAllAsync();
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            if (user != null)
+            {
+                NomeUser = user.UserName;
+                IdUser = user.Id;
+                // Aqui você pode acessar as propriedades do usuário, como user.Email, user.UserName, etc.
+                // E preencher os campos do formulário conforme necessário.
+            }
         }
 
     }

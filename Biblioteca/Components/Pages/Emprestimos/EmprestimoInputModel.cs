@@ -12,8 +12,8 @@ namespace Biblioteca.Components.Pages.Emprestimos
         [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Valor inválido")]
         public int LivroId { get; set; }
 
-        [Required(ErrorMessage = "O campo utilizador é obrigatório")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Valor inválido")]
+        //[Required(ErrorMessage = "O campo utilizador é obrigatório")]
+        //[RegularExpression("([1-9][0-9]*)", ErrorMessage = "Valor inválido")]
         public string UsuarioId { get; set; }
 
         [Required(ErrorMessage = "O campo Data de empréstimo é obrigatório")]

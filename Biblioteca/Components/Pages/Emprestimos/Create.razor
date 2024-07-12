@@ -1,6 +1,12 @@
 ﻿@page "/emprestimos/create"
+@using Biblioteca.Data
 @using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
 @inherits CreateEmprestimoPage
+
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
 
 @* @attribute [Authorize(Roles = "Atendente")]
  *@
@@ -25,11 +31,11 @@
                     }
         </MudSelect>
 
-        <MudTextField Label="Usuarios"
+@*         <MudTextField Label="Usuarios"
                       Variant="Variant.Outlined"
                       @bind-Value="InputModel.UsuarioId"
                       For="@(()=> InputModel.UsuarioId)" />
-
+ *@
 
         <MudDatePicker Variant="Variant.Outlined"
                        @bind-Date="date"
