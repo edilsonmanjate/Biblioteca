@@ -44,9 +44,9 @@ namespace Biblioteca.Components.Pages.Emprestimos
         [CascadingParameter]
         private Task<AuthenticationState> AuthenticationStateTask { get; set; }
 
-        public void GoToUpdate(int agendamentoId)
+        public void GoToUpdate(int emprestimoId)
         {
-            NavigationManager.NavigateTo($"/emprestimos/update/{agendamentoId}");
+            NavigationManager.NavigateTo($"/emprestimos/devolucao/{emprestimoId}");
         }
 
         public async Task DeleteEmprestimo(Emprestimo agendamento)
@@ -73,6 +73,7 @@ namespace Biblioteca.Components.Pages.Emprestimos
                 Snackbar.Add(ex.Message, Severity.Error);
             }
         }
+
 
         protected override async Task OnInitializedAsync()
         {

@@ -4,6 +4,7 @@ using Biblioteca.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteca.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240712232843_DiscriminatorNoUsuario")]
+    partial class DiscriminatorNoUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,9 +119,6 @@ namespace Biblioteca.Migrations
                     b.Property<string>("UsuarioId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("devolvido")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -401,15 +401,15 @@ namespace Biblioteca.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "32b05586-5f40-46e4-9bde-b13d85f276dc",
+                            ConcurrencyStamp = "5cf52166-09e7-4fc8-9d9b-98a5e9d6a43d",
                             Email = "admin@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMr9GbPZw+YSD4qEtV7Kum4UQYM+hGMF9jJdfY3paci4YvpTHj1VI8rb6Cgo42kW7A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIwQSHvgi4r6N1ddlClESJcg5NT09SbVS4JCiM6mPdT07fWnXIwWFdDicCv94LyVNg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f71ef3f8-9a27-4d3a-b442-92b4c68270d0",
+                            SecurityStamp = "11c48ff8-14b5-4f18-9f2f-aa9e6d8aba4c",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com",
                             Nome = "Administrador"
@@ -418,15 +418,15 @@ namespace Biblioteca.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1c124a8b-174e-4d4f-8744-5d9c1ca971fc",
+                            ConcurrencyStamp = "dc7dcf90-e5ed-4cf7-9a83-fd3ce3838cb0",
                             Email = "edilson@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EDILSON@MAIL.COM",
                             NormalizedUserName = "EDILSON@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAOKfS63HHSxlkfHt2HghVJ2H0+bRnxLWVb4O7+3+XYEFyiloFAH16cb407uodETZw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHrZUA6jMhRBzI4yvXxz9T/6fSvAfHXdo4Nc2qEkT1adPNpenyaxmuKgoyMgRHlfBQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fcd12aff-324a-429f-93b3-49c227e21d0e",
+                            SecurityStamp = "3ee53213-2a51-45b6-9f9f-cc81affe9fc1",
                             TwoFactorEnabled = false,
                             UserName = "edilson@mail.com",
                             Nome = "Edilson"

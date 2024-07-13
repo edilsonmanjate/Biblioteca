@@ -20,6 +20,8 @@ namespace Biblioteca.Data
             new DbInitializer(builder).Seed();
             base.OnModelCreating(builder); builder.Entity<Livro>();
 
+     
+
         }
 
     }

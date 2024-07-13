@@ -19,6 +19,7 @@ namespace Biblioteca.Components.Pages.Emprestimos
         [Required(ErrorMessage = "O campo Data de empréstimo é obrigatório")]
         public DateTime DataEmprestimo { get; set; }
         [Required(ErrorMessage = "O campo Data de devolução é obrigatório")]
-        public DateTime DataDevolucao { get; set; }
+        public DateTime DataDevolucao { get; set; } 
+        public bool Devolvido { get; set; }
     }
 }

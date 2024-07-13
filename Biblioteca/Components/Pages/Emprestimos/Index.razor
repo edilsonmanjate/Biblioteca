@@ -10,17 +10,15 @@
            Class="mt-md4 mb-4">Novo emprestimo</MudButton>
 
 
-
 <MudStack Row Wrap="Wrap.Wrap">
     @foreach (var emprestimo in Emprestimos)
     {
         <MudPaper Class="pa-2 mt-1 border-dashed" Outlined="true">
 
-            <MudText Class="d-flex justify-center" Typo="Typo.h5">@emprestimo.Livro.Titulo</MudText>
+            <MudText Class="d-flex justify-align-left" Typo="Typo.h5">@emprestimo.Livro.Titulo</MudText>
 
             <MudStack Row Class="mt-4">
-                <MudIcon Icon="@Icons.Material.Filled.Book" />
-               @*  <MudText>@emprestimo.Id</MudText> *@
+                <MudIcon Icon="@Icons.Material.Filled.Person" />
                 <MudText>@(emprestimo.Usuario.Nome ?? " Título indisponível")</MudText>
 
             </MudStack>
@@ -28,11 +26,26 @@
             <MudDivider Class="mt-4 mb-4" />
 
             <MudText>Data de empréstimo @emprestimo.DataEmprestimo.ToString("dd/MM/yyyy")</MudText>
-            <MudText>Data de devolução @emprestimo.DataDevolucao.ToString("dd/MM/yyyy")</MudText>
-            <MudFab Size="Size.Small"
-                    @onclick="@(()=> DeleteEmprestimo(emprestimo))"
-                    StartIcon="@Icons.Material.Filled.Delete"
-                    Color="Color.Error" />
+            @if (@emprestimo.Devolvido is false)
+            {
+                <MudText>Data prev. p/ devolução @emprestimo.DataDevolucao.ToString("dd/MM/yyyy")</MudText>
+            }
+            else
+            {
+                <MudText>Data da devolução @emprestimo.DataDevolucao.ToString("dd/MM/yyyy")</MudText>
+            }
+            
+            @if (@emprestimo.Devolvido is false)
+            {
+                <MudFab Size="Size.Small"
+                        @onclick="@(()=>GoToUpdate(emprestimo.Id))"
+                    StartIcon="@Icons.Material.Filled.AssignmentReturn"
+                    Color="Color.Success" />
+            }
+            @if (@emprestimo.Devolvido is false)
+             {<MudAlert Severity="Severity.Warning">Por Devolver</MudAlert>}
+             else
+            {<MudAlert Severity="Severity.Success">Devolvido</MudAlert>}
 
         </MudPaper>
     }
