@@ -63,12 +63,10 @@ namespace Biblioteca.Repositories.Emprestimos
             }
         }
 
-        public async Task<List<Emprestimo>> GetReportAsync()
+        public async Task<List<EmprestimosAnuais>?> GetReportAsync(string userId)
         {
-            return await _context.Emprestimos
-                .Include(e => e.Livro)
-                //.Include(e => e.Usuario)
-                .ToListAsync();
+            var result = _context.Database.SqlQuery<EmprestimosAnuais>($"SELECT MONTH(DataEmprestimo) AS Mes, COUNT(*) AS QuantidadeAgendamentos FROM Emprestimos WHERE YEAR(DataEmprestimo) = year(GETDATE())  GROUP BY MONTH(DataEmprestimo) ORDER BY Mes;");
+            return await Task.FromResult(result.ToList());
         }   
     }
 }

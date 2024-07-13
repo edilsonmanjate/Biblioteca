@@ -1,11 +1,13 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.Authorization
 @inherits HomePage
-
 
 <PageTitle>DASHBOARD</PageTitle>
 
 <MudText Typo="Typo.h3" Class="d-flex justify-content-center">DASHBOARD</MudText>
-
+@* <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.Refresh"
+@onclick="@(()=>OnInitializedAsync())"
+DropShadow="false" /> *@
 <div>
     <MudPaper Class="pa-4">
         <MudChart ChartType="ChartType.Bar"

@@ -13,6 +13,7 @@
 
 <MudDataGrid Items="@Livros" PageSize="10" SortMode="@SortMode.Single" Groupable="false" >
     <Columns>
+        <PropertyColumn Property="z=>z.Titulo" Title="Título" Sortable="true" Filterable="true" />
         <PropertyColumn Property="z=>z.Autor" Title="Autor" Sortable="true" Filterable="true" />
         <PropertyColumn Property="z=>z.Ano" Title="Ano" Sortable="true" Filterable="true" />
         <PropertyColumn Property="z=>z.ISBN" Title="ISBN" Sortable="true" Filterable="true" />

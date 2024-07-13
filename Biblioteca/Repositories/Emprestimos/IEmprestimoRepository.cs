@@ -10,6 +10,6 @@ namespace Biblioteca.Repositories.Emprestimos
         Task AddAsync(Emprestimo agendamento);
         Task UpdateAsync(Emprestimo agendamento);
         Task DeleteAsync(int id);
-        Task<List<Emprestimo>> GetReportAsync();
+        Task<List<EmprestimosAnuais>> GetReportAsync(string userId);
     }
 }
