@@ -56,3 +56,10 @@ Throughout this project, I’ve had the opportunity to deepen my knowledge and s
 
 
 
+https://github.com/edilsonmanjate/Biblioteca/blob/Dev/Biblioteca/Resources/2.png 
+https://github.com/edilsonmanjate/Biblioteca/blob/Dev/Biblioteca/Resources/3.png
+https://github.com/edilsonmanjate/Biblioteca/blob/Dev/Biblioteca/Resources/4.png
+https://github.com/edilsonmanjate/Biblioteca/blob/Dev/Biblioteca/Resources/5.png
+https://github.com/edilsonmanjate/Biblioteca/blob/Dev/Biblioteca/Resources/6.png
+https://github.com/edilsonmanjate/Biblioteca/blob/Dev/Biblioteca/Resources/7.png
+https://github.com/edilsonmanjate/Biblioteca/blob/Dev/Biblioteca/Resources/8.png
